@@ -1,10 +1,13 @@
 CREATE OR REPLACE FUNCTION count_bill_for_booking()
     RETURNS trigger AS
 $$
+DECLARE
+    room_class INT;
+    class_price NUMERIC (6, 1);
 BEGIN
-    room_class = SELECT class_name FROM room WHERE number=room_number;
-    class_price = SELECT price FROM class WHERE name=room_class;
-    NEW.price = ROUND(EXTRACT(hours from (NEW.session_end - NEW.session_start)), 1) * class_price;
+    SELECT class_name INTO room_class FROM room WHERE number=room_number;
+    SELECT price FROM class INTO class_price WHERE name=room_class;
+    NEW.price = ROUND(EXTRACT(hours from (NEW.check_out - NEW.check_in)), 1) * class_price;
     RETURN NEW;
 END;
 $$
