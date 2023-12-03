@@ -5,6 +5,8 @@ from random import randint
 import exrex
 import pytz
 
+# drop table booking, class, class_convenience, client, convenience, hotel
+
 # client
 COUNT_CLIENTS = 50
 
@@ -40,7 +42,6 @@ client_surnames = (
         "Горин",
         "Милос",
         "Свитабобовна",
-        "re",
         "Дворникова",
         "Кудрин",
         "Бейтман",
@@ -51,6 +52,8 @@ client_surnames = (
         "Агеева",
         "Сигмов"
         )
+
+client_sex = ('male', 'female')
 
 client_age = [age for age in range(1, 120)]
 
@@ -71,12 +74,13 @@ client_jobs = (
     'наркодиллер',
     'фея',
     'няня',
-    'барабанщик'
+    'барабанщик',
+    None
 )
 
 # hotel
 
-hotel_name = (
+hotel_names = (
     'Абу-даби',
     'Тикток хаус',
     'Рыбинск',
@@ -87,11 +91,11 @@ hotel_name = (
     'Сайлент Хилл'
 )
 
-count_stars = (1, 1.5, 2, 2.5, 3, 3.5, 4, 4.5, 5)
+stars = (1, 1.5, 2, 2.5, 3, 3.5, 4, 4.5, 5)
 
 # class
 
-class_name = ('Бизнес-класс', 'Супериор', 'Полулюкс', 'Стандарт', 'VIP')
+class_names = ('Бизнес-класс', 'Супериор', 'Полулюкс', 'Стандарт', 'VIP')
 
 hotel_price_on_class = {
     'Абу-даби': {
@@ -154,14 +158,15 @@ hotel_price_on_class = {
 
 # convenience
 
-convenience = (
-    'conditioner',
-    'chairs',
-    'bed',
-    'wardrobe',
-    'bedside table',
-    'fridge',
-    'stove',
+convenience_names = (
+    'кондиционер',
+    'стулья',
+    'кровать для детей',
+    'шкаф',
+    'тумбочка',
+    'холодильник',
+    'плита',
+    'ванные принадлежности'
     )
 
 # booking
