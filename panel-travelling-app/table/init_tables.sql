@@ -4,6 +4,7 @@ CREATE TABLE IF NOT EXISTS convenience (
 
 CREATE TABLE IF NOT EXISTS class (
     name TEXT PRIMARY KEY,
+    hotel_name TEXT NOT NULL,
     price_per_night NUMERIC (6, 1) NOT NULL
 );
 
@@ -18,18 +19,11 @@ CREATE TABLE IF NOT EXISTS hotel (
     count_stars NUMERIC(2, 1) NOT NULL
 );
 
-CREATE TABLE IF NOT EXISTS room (
-    number INT PRIMARY KEY GENERATED ALWAYS AS IDENTITY (INCREMENT 1 START 1),
-    class_name TEXT REFERENCES class (name) ON DELETE CASCADE,
-    hotel_name TEXT REFERENCES hotel (name) ON DELETE CASCADE,
-    number_seats INT NOT NULL,
-    CONSTRAINT valid_number_seats CHECK (number_seats > 0)
-);
-
-
 CREATE TABLE IF NOT EXISTS booking (
     id INT PRIMARY KEY GENERATED ALWAYS AS IDENTITY ( INCREMENT 1 START 1 ),
-    room_number INT REFERENCES room (number) ON DELETE CASCADE,
+    room_number INT NOT NULL,
+    hotel_name TEXT REFERENCES hotel (name) ON DELETE CASCADE,
+    class_name TEXT REFERENCES class (name) ON DELETE CASCADE,
     check_in TIMESTAMP WITH TIME ZONE,
     check_out TIMESTAMP WITH TIME ZONE,
     price NUMERIC(7, 1),
@@ -50,6 +44,3 @@ CREATE TABLE IF NOT EXISTS client (
     CONSTRAINT valid_age CHECK (age > 0 AND age < 130),
     CONSTRAINT valid_sex CHECK (sex = 'male' or sex = 'female')
 );
-
-
-
