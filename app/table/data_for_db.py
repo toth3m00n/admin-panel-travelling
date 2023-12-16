@@ -5,7 +5,7 @@ from random import randint
 import exrex
 import pytz
 
-# drop table booking, class, class_convenience, client, convenience, hotel
+# drop table booking, class_type, class_convenience, client, convenience, hotel
 
 # client
 COUNT_CLIENTS = 50
@@ -93,7 +93,7 @@ hotel_names = (
 
 stars = (1, 1.5, 2, 2.5, 3, 3.5, 4, 4.5, 5)
 
-# class
+# class_type
 
 class_names = ('Бизнес-класс', 'Супериор', 'Полулюкс', 'Стандарт', 'VIP')
 

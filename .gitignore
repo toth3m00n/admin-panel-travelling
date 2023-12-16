@@ -1,3 +1,4 @@
 travelVENV/
 .env
-panel-travelling-app/table/table_fil.py
+app/table_fil.py
+remeber.txt

@@ -1,0 +1,41 @@
+{% extends './base.html' %}
+
+{% block title %} Clients {% endblock %}
+
+{% block content %}
+
+ <h2 class="text-center fs-1"> Clients </h2>
+
+<div class="container-flexible py-3 ps-1">
+    <a href="{{ url_for('client.create_client') }}"> <button type="button" class="btn create-btn rounded-pill fw-550 px-4 btn-sm">Create new client</button></a>
+</div>
+
+<table>
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>name</th>
+            <th>surname</th>
+            <th>sex</th>
+            <th>age</th>
+            <th>job</th>
+            <th>telephone</th>
+            <th>booking id</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for client in clients %}
+            <tr>
+                <td> {{ client[0] }}</td>
+                <td>{{ client[2] }} <a href="#"> <em>(edit) </em> </a> </td>
+                <td> {{ client[3] }} </td>
+                <td> {{ client[4] }} </td>
+                <td> {{ client[5] }} </td>
+                <td> {{ client[7] }} </td>
+                <td> {{ client[6] }} </td>
+                <td> {{ client[1] }} </td>
+            </tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% endblock %}

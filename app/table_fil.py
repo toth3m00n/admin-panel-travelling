@@ -1,39 +1,39 @@
-from sqlalchemy import create_engine, MetaData
-from sqlalchemy.orm import sessionmaker
-from data_for_db import *
+from sqlalchemy import insert
 
-engine = create_engine("postgresql+psycopg2://postgres:123go@localhost:5432/admin_traveling")
+from table.data_for_db import *
 
-metadata = MetaData()
-metadata.reflect(bind=engine)
+from app.hotel.models import *
+from app.client.models import *
+from app.class_type.models import *
+from app.convenience.models import *
+from app.database import db
+from manage import app
 
-table_names = metadata.tables
 
-Session = sessionmaker(engine)
-with Session() as session:
+def fil_database():
 
     # hotel
     for name in hotel_names:
         data_to_insert = {'name': name, 'count_stars': stars[randint(0, len(stars) - 1)]}
-        session.execute(table_names['hotel'].insert().values(data_to_insert))
+        db.session.add(Hotel(**data_to_insert))
 
-    # class
+    # class_type
     for name in class_names:
         for hotel in hotel_names:
             data_to_insert = {'name': name, 'hotel_name': hotel, 'price_per_night': hotel_price_on_class[hotel][name]}
-            session.execute(table_names['class'].insert().values(data_to_insert))
+            db.session.add(Class(**data_to_insert))
 
     # convenience
     for convenience in convenience_names:
         size = randint(10, 200)
         data_to_insert = {
-            'convenience_size': size,
+            'size': size,
             'name': convenience
         }
-        session.execute(table_names['convenience'].insert().values(data_to_insert))
+        db.session.add(Convenience(**data_to_insert))
 
     # booking
-    start_class_id = session.query(table_names['class']).first().id
+    start_class_id = db.session.query(Class).first().id
     for booking_id in range(COUNT_CLIENTS):
         room_number = booking_id + 1
         class_id = randint(start_class_id, start_class_id + len(hotel_names) * len(class_names) - 1)
@@ -46,10 +46,10 @@ with Session() as session:
             'check_in': check_in,
             'check_out': check_out,
         }
-        session.execute(table_names['booking'].insert().values(data_to_insert))
+        db.session.add(Booking(**data_to_insert))
 
     # client
-    start_booking_id = session.query(table_names['booking']).first().id
+    start_booking_id = db.session.query(Booking).first().id
     for client_id in range(COUNT_CLIENTS):
         name = client_names[randint(0, len(client_names) - 1)]
         surname = client_surnames[randint(0, len(client_surnames) - 1)]
@@ -69,9 +69,9 @@ with Session() as session:
             'sex': sex
         }
 
-        session.execute(table_names['client'].insert().values(data_to_insert))
+        db.session.add(Client(**data_to_insert))
 
-    # class-convenience
+    # class_type-convenience
     for class_id in range(len(class_names)):
         for convenience_name in convenience_names:
             amount = randint(0, 7)
@@ -80,8 +80,10 @@ with Session() as session:
                 'convenience_name': convenience_name,
                 'amount': amount
             }
-            session.execute(table_names['class_convenience'].insert().values(data_to_insert))
+            db.session.add(ClassConvenience(**data_to_insert))
 
-    session.commit()
+    db.session.commit()
 
 
+with app.app_context():
+    fil_database()

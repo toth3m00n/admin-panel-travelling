@@ -1,0 +1,46 @@
+table {
+    border-collapse: collapse;
+    width: 100%;
+}
+
+th, td {
+    border: 1px solid #ddd;
+    padding: 8px;
+    text-align: left;
+}
+
+th {
+    background-color: #f2f2f2;
+}
+
+.create-btn {
+    background-color: #778899;
+    font-weight: bold;
+    display: inline-block;
+}
+
+.create-btn:hover {
+    background-color: #b1bbc4;
+}
+
+.form-style {
+    background-color: #d3deed;
+}
+
+.form-style:focus {
+      background-color: #8290bf;
+      border-color: #7ba3d4; /* Цвет рамки при фокусировке */
+      box-shadow: 0 0 5px rgba(85, 119, 161, 1);; /* Тень при фокусировке */
+}
+
+legend {
+    font-size: medium;
+}
+
+.radio-style {
+    background-color: #d3deed;
+}
+
+.border-style {
+    border:4px solid #cecece;
+}
