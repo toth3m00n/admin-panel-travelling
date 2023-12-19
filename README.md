@@ -21,24 +21,27 @@ source venv/bin/activate
 ```
 pip install -r requirements.txt
 ```
-Перейти в рабочую папку и установить переменные окружения:
+Перейти в рабочую папку:
 ```
 cd computer_club
-export FLASK_APP=app
-export FLASK_ENV=development (для режима разработки)
 ```
-Заполнить базу данных:
-```
-python init_db.py
-```
-Теперь можно запускать проект:
-```
-flask run
-```
+
 *Примечание:*
-*Перед работой у вас должна быть создана база данных, и в файле `.env` в корне репозитория необходимо прописать имя пользователя и пароль для подключения к базе.*
+*Перед работой у вас должна быть создана база данных, и в файле `.env` в корне репозитория необходимо создать файл .env*
 *Пример файла `.env`:*
 ```
-DB_USERNAME=psql_user
-DB_PASSWORD=psql1234
+KEY=smth
+DATABASE_URL=postgresql://[user[:password]@][netloc][:port][/dbname]
+APP_SETTINGS=config.DevelopmentConfig
+PASSWORD=your_db_password
+```
+
+Теперь можно запускать проект:
+```
+python manage.py runserver
+```
+
+Заполнить базу данных, если требуется. Данные для моего прилождения можно найти в [data for db](https://github.com/toth3m00n/admin-panel-travelling/blob/main/app/table/data_for_db.py) :
+```
+python table_fil.py
 ```
