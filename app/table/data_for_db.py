@@ -35,7 +35,6 @@ client_names = (
 client_surnames = (
         "Абобов",
         "Таксимбаева",
-        "Таксимбаева",
         "Гослингова",
         "Самокат",
         "МТС",
@@ -177,6 +176,7 @@ hour = 14
 day = 1
 timezone = pytz.timezone('Europe/Istanbul')
 sessions = [[None, None]] * (COUNT_CLIENTS + 1)
+print(sessions)
 prev_session_end = 1
 current_date = timezone.localize(datetime(year, month, day, hour))
 
@@ -187,4 +187,4 @@ for i in range(COUNT_CLIENTS):
     sessions[i] = [current_date, end_session]
     current_date = end_session
 
-    # print(sessions[i][0], sessions[i][1])
+    print(sessions[i][0], sessions[i][1])

@@ -1,36 +1,65 @@
+html body {
+  background-image: url(../lot_snow.jpg);
+}
+
 table {
     border-collapse: collapse;
     width: 100%;
 }
 
 th, td {
-    border: 1px solid #ddd;
+    border:2px solid #00619e;
     padding: 8px;
     text-align: left;
 }
 
+td {
+    background: rgba(237, 243, 252, 0.7)
+}
+
 th {
-    background-color: #f2f2f2;
+ background: rgba(119,161,181, 0.9)
+}
+
+h2, h3, h4 {
+    color: #003347;
+}
+
+li a {
+  color: #22559c;
+  font-weight: bold;
+}
+
+li a:hover {
+  color: #20214f;
+}
+
+li.list-group-item {
+    background: rgba(237, 243, 252, 0.7);
+    width:  400px;
+    text-align: center;
+    border-color: #00619e;
+    border-width: 0.15em;
 }
 
 .create-btn {
-    background-color: #778899;
+    background-color: #77a1b5;
     font-weight: bold;
     display: inline-block;
 }
 
 .create-btn:hover {
-    background-color: #b1bbc4;
+    background-color: #647991;
 }
 
 .form-style {
-    background-color: #d3deed;
+    background-color: #a6caf0;
 }
 
 .form-style:focus {
       background-color: #8290bf;
       border-color: #7ba3d4; /* Цвет рамки при фокусировке */
-      box-shadow: 0 0 5px rgba(85, 119, 161, 1);; /* Тень при фокусировке */
+      box-shadow: 0 0 5px rgba(85, 119, 161, 1); /* Тень при фокусировке */
 }
 
 legend {
@@ -42,5 +71,10 @@ legend {
 }
 
 .border-style {
-    border:4px solid #cecece;
+    border:4px solid #00619e;
 }
+
+.transparent-style {
+    background: rgba(237, 243, 252, 0.6)
+}
+

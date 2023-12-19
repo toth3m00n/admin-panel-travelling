@@ -6,7 +6,7 @@ from app.database import db
 class Client(db.Model):
     __tablename__ = 'client'
     id = db.Column(db.Integer(), primary_key=True)
-    booking_id = db.Column(db.Integer(), db.ForeignKey('booking.id'))
+    booking_id = db.Column(db.Integer(), db.ForeignKey('booking.id'), nullable=False)
     name = db.Column(db.Text(), nullable=False)
     surname = db.Column(db.Text(), nullable=False)
     sex = db.Column(db.Text(), nullable=False)

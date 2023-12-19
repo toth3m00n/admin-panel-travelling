@@ -26,14 +26,14 @@
     <tbody>
         {% for client in clients %}
             <tr>
-                <td> {{ client[0] }}</td>
-                <td>{{ client[2] }} <a href="#"> <em>(edit) </em> </a> </td>
-                <td> {{ client[3] }} </td>
-                <td> {{ client[4] }} </td>
-                <td> {{ client[5] }} </td>
-                <td> {{ client[7] }} </td>
-                <td> {{ client[6] }} </td>
-                <td> {{ client[1] }} </td>
+                <td> {{ client.id }}</td>
+                <td>{{ client.name }} <a href="#"> <em>(edit) </em> </a> </td>
+                <td> {{ client.surname }} </td>
+                <td> {{ client.sex }} </td>
+                <td> {{ client.age }} </td>
+                <td> {{ client.job }} </td>
+                <td> {{ client.telephone }} </td>
+                <td> {{ client.booking_id }} </td>
             </tr>
         {% endfor %}
     </tbody>

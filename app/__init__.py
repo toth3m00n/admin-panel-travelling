@@ -23,8 +23,14 @@ def create_app():
 
         db.session.commit()
 
+    from app.homepage.index import index_bp
+    app.register_blueprint(index_bp, url_prefix='')
+
     from app.client.client import client_bp
     app.register_blueprint(client_bp, url_prefix='/client')
+
+    from app.hotel.hotel import hotel_bp
+    app.register_blueprint(hotel_bp, url_prefix='/hotel')
 
     return app
 

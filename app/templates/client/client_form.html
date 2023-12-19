@@ -6,22 +6,28 @@
 
 <h2 class="text-center"> Add new client</h2>
 
+{% for error in errors %}
+    <div class="alert alert-danger" role="alert">
+      {{ error }}
+    </div>
+{% endfor %}
+
 <div class="container my-2">
 <form method="post">
 
   <!--  Client info-->
-  <div class="container pb-3 border-4 border-style mb-2 col-8">
+  <div class="container pb-3 border-4 border-style mb-2 col-8 transparent-style">
 
     <label class="form-label fw-bolder fs-5"> Client info </label>
   <div class="row">
       <div class="mb-3 col-4">
         <label for="name" class="form-label">Name</label>
-        <input type="text" class="form-control form-control-sm px-4 form-style" name="name" id="name">
+        <input type="text" class="form-control form-control-sm px-4 form-style" name="name" id="name" value="{{ client[2] }}">
       </div>
 
         <div class="mb-3 col-4">
         <label for="surname" class="form-label">Surname</label>
-        <input type="text" class="form-control form-control-sm px-4 form-style" name="surname" id="surname">
+        <input type="text" class="form-control form-control-sm px-4 form-style" name="surname" id="surname" value="{{ client[1] }}">
       </div>
   </div>
 
@@ -40,14 +46,15 @@
   <div class="row">
       <div class="mb-3 col-4">
         <label for="age" class="form-label"> Age </label>
-        <input type="number" class="form-control form-control-sm form-style" name="age" id="age" min="1" max="130">
+        <input type="number" class="form-control form-control-sm form-style" name="age" id="age" min="1" max="130" value="{{ client[5] }}">
       </div>
   </div>
 
    <div class="row">
        <div class="mb-3 col-4">
         <label for="telephone" class="form-label"> Telephone </label>
-        <input type="text" class="form-control form-control-sm px-4 form-style" name="telephone" id="telephone" min="1" max="130">
+        <input type="text" class="form-control form-control-sm px-4 form-style" name="telephone" id="telephone" value="{{ client[6] }}"
+               min="1" max="130">
         </div>
    </div>
 
@@ -55,13 +62,13 @@
   <div class="row">
       <div class="mb-3 col-4">
         <label for="job" class="form-label"> Job </label>
-        <input type="text" class="form-control form-control-sm px-4 form-style" name= "job" id="job">
+        <input type="text" class="form-control form-control-sm px-4 form-style" name= "job" id="job" value="{{ client[7] }}">
       </div>
      </div>
  </div>
 
 <!--  Booking info-->
-  <div class="container pb-3 border-4 border-style mb-2 col-8">
+  <div class="container pb-3 border-4 border-style mb-2 col-8 transparent-style">
   <label class="form-label fw-bolder fs-5"> Booking info </label>
 
 
@@ -70,20 +77,18 @@
       <div class="mb-3 col-4">
         <label class="form-label"> Hotel </label>
       <select class="form-select form-select-sm form-style" name="hotel" aria-label="Default select example">
-        <option selected>One</option>
-        <option value="1">One</option>
-        <option value="2">Two</option>
-        <option value="3">Three</option>
+          {% for hotel_name in hotels %}
+        <option value={{hotel_name[0]}} > {{ hotel_name[0] }} </option>
+          {% endfor %}
       </select>
       </div>
 
         <div class="mb-3 col-4">
         <label class="form-label"> Class </label>
       <select class="form-select form-select-sm form-style" aria-label="Default select example" name="class_name">
-        <option selected> Standard </option>
-        <option value="1">One</option>
-        <option value="2">Two</option>
-        <option value="3">Three</option>
+          {% for class_name in classes %}
+        <option value={{class_name[0]}} > {{ class_name[0] }} </option>
+          {% endfor %}
       </select>
       </div>
 
@@ -100,11 +105,11 @@
           <label>Check in</label>
           <div class="input-group mb-3">
             <span class="input-group-text">day</span>
-            <input type="text" class="form-control form-style" placeholder="09" aria-label="day" name="checkin_day">
+            <input type="number" class="form-control form-style" placeholder="09" aria-label="day" name="checkin_day">
             <span class="input-group-text">month</span>
-            <input type="text" class="form-control form-style" placeholder="10" aria-label="month" name="checkin_month">
+            <input type="number" class="form-control form-style" placeholder="10" aria-label="month" name="checkin_month">
             <span class="input-group-text">year</span>
-            <input type="text" class="form-control form-style" placeholder="2023" aria-label="year" name="checkin_year">
+            <input type="number" class="form-control form-style" placeholder="2023" aria-label="year" name="checkin_year">
           </div>
         </div>
 
@@ -112,11 +117,11 @@
         <label> Check out</label>
         <div class="input-group mb-3">
           <span class="input-group-text">day</span>
-          <input type="text" class="form-control form-style" placeholder="09" aria-label="day" name="checkout_day">
+          <input type="number" class="form-control form-style" placeholder="09" aria-label="day" name="checkout_day">
           <span class="input-group-text">month</span>
-          <input type="text" class="form-control form-style" placeholder="10" aria-label="month" name="checkout_month">
+          <input type="number" class="form-control form-style" placeholder="10" aria-label="month" name="checkout_month">
           <span class="input-group-text">year</span>
-          <input type="text" class="form-control form-style" placeholder="2023" aria-label="year" name="checkout_year">
+          <input type="number" class="form-control form-style" placeholder="2023" aria-label="year" name="checkout_year">
         </div>
       </div>
   </div>

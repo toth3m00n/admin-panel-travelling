@@ -1,4 +1,22 @@
 {% extends 'base.html' %}
 
-{% block title %} Homepage {% endblock %}
+{% block title%} homapage {% endblock%}
+
+{% block content %}
+    <div class="container-fluid py-3 mt-3">
+        <h2 class="text-center fs-1"> Admin panel </h2>
+    </div>
+<div class="container mt-4">
+    <div class="row h-100 justify-content-center align-items-center">
+        <div class="col-4 col-mx-auto">
+            <h4 class="subtitle-style"> Tables  </h4>
+            <ul class="list-group">
+                <li class="list-group-item"><a href="{{ url_for('client.clients') }}">Client</a></li>
+                <li class="list-group-item"><a href="{{ url_for('hotel.hotels') }}">Hotel</a></li>
+                <li class="list-group-item"><a href="#">Страница 3</a></li>
+            </ul>
+        </div>
+    </div>
+</div>
+{% endblock %}
 

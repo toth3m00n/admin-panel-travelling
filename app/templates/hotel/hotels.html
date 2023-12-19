@@ -1,0 +1,29 @@
+{% extends './base.html' %}
+
+{% block title %} Hotels {% endblock %}
+
+{% block content %}
+
+ <h2 class="text-center fs-1"> Hotels </h2>
+
+<div class="container-flexible py-3 ps-1">
+    <a href="#"> <button type="button" class="btn create-btn rounded-pill fw-550 px-4 btn-sm">Create new hotel</button></a>
+</div>
+
+<table>
+    <thead>
+        <tr>
+            <th>name</th>
+            <th>count stars</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for hotel in hotels %}
+            <tr>
+                <td>{{ hotel.name }} <a href="#"> <em>(edit) </em> </a> </td>
+                <td> {{ hotel.count_stars }} </td>
+            </tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% endblock %}
