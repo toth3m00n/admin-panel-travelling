@@ -43,7 +43,7 @@ li.list-group-item {
 }
 
 .create-btn {
-    background-color: #77a1b5;
+    background-color: #466ee3;
     font-weight: bold;
     display: inline-block;
 }
@@ -78,3 +78,6 @@ legend {
     background: rgba(237, 243, 252, 0.6)
 }
 
+.navbar-style {
+     background-image: url(../images/snow.jpg);
+}

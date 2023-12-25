@@ -68,9 +68,11 @@ def create_client():
         class_name = request.form["class_name"]
         room = request.form["room"]
 
-        class_id = db.session.query(Class.id).filter(
-            (Class.hotel_name == hotel) & (Class.name == class_name)
-        ).first()[0]
+        class_id = (
+            db.session.query(Class.id)
+            .filter((Class.hotel_name == hotel) & (Class.name == class_name))
+            .first()[0]
+        )
 
         checkin_day = request.form["checkin_day"]
         checkin_month = request.form["checkin_month"]
@@ -93,9 +95,7 @@ def create_client():
 
         booking_id = db.session.query(Booking.id).order_by(Booking.id.desc()).first()[0]
 
-        print(class_id, booking_id)
-
-        insert_data_client['booking_id'] = booking_id + 1
+        insert_data_client["booking_id"] = booking_id + 1
 
         insert_data_booking = {
             "room_number": room,
@@ -112,13 +112,53 @@ def create_client():
 
         if errors:
             return render_template(
-                "client/client_form.html", errors=errors, client=None, classes=class_names,
-                hotels=hotel_names
+                "client/client_form.html",
+                errors=errors,
+                client=None,
+                classes=class_names,
+                hotels=hotel_names,
+                booking=None,
+                update_client=None,
+                update_booking=None,
             )
         db.session.commit()
 
         return redirect("/client")
 
     return render_template(
-        "client/client_form.html", client=None, classes=class_names, hotels=hotel_names
+        "client/client_form.html",
+        client=None,
+        booking=None,
+        classes=class_names,
+        hotels=hotel_names,
+        update_client=None,
+        update_booking=None,
     )
+
+
+@client_bp.route("/client/<int:client_id>", methods=["GET", "POST", "DELETE"])
+def get_client(client_id):
+    if request != "POST":
+        uniq_client = db.session.query(Client).filter(Client.id == client_id).first()
+        return render_template(
+            "client/client_form.html", client=uniq_client, update_client=True
+        )
+
+
+@client_bp.route("/booking/<int:booking_id>", methods=["GET", "POST", "DELETE"])
+def get_booking(booking_id):
+    class_names = db.session.query(distinct(Class.name)).all()
+    hotel_names = db.session.query(Hotel.name).all()
+    if request != "POST":
+        uniq_booking = (
+            db.session.query(Booking).filter(Booking.id == booking_id).first()
+        )
+        return render_template(
+            "client/client_form.html",
+            client=None,
+            classes=class_names,
+            hotels=hotel_names,
+            booking=uniq_booking,
+            update_client=None,
+            update_booking=True,
+        )

@@ -1,0 +1,70 @@
+ <div class="container pb-3 border-4 border-style mb-2 col-8 transparent-style">
+  <label class="form-label fw-bolder fs-5"> Booking info </label>
+
+
+    <div class="row">
+
+      <div class="mb-3 col-4">
+        <label class="form-label"> Hotel </label>
+      <select class="form-select form-select-sm form-style" name="hotel" aria-label="Default select example">
+          {% for hotel_name in hotels %}
+        <option value={{hotel_name[0]}} > {{ hotel_name[0] }} </option>
+          {% endfor %}
+      </select>
+      </div>
+
+        <div class="mb-3 col-4">
+        <label class="form-label"> Class </label>
+      <select class="form-select form-select-sm form-style" aria-label="Default select example" name="class_name">
+          {% for class_name in classes %}
+        <option value={{class_name[0]}} > {{ class_name[0] }} </option>
+          {% endfor %}
+      </select>
+      </div>
+
+    </div>
+
+      <div class="row">
+      <div class="mb-3 col-4">
+        <label for="room" class="form-label"> Room number </label>
+        <input type="number" class="form-control form-control-sm px-4 form-style" id="room" name="room" min="1" max="800"
+        value="{{ booking.room_number }}">
+      </div>
+      </div>
+
+        <div>
+          <label>Check in</label>
+          <div class="input-group mb-3">
+            <span class="input-group-text">day</span>
+            <input type="number" class="form-control form-style" placeholder="09" aria-label="day" name="checkin_day"
+            value="{{ booking.check_in.day if booking else '' }}">
+            <span class="input-group-text">month</span>
+            <input type="number" class="form-control form-style" placeholder="10" aria-label="month" name="checkin_month"
+             value="{{ booking.check_in.month if booking else ''}}">
+            <span class="input-group-text">year</span>
+            <input type="number" class="form-control form-style" placeholder="2023" aria-label="year" name="checkin_year"
+             value="{{ booking.check_in.year if booking else '' }}">
+          </div>
+        </div>
+
+      <div>
+        <label> Check out</label>
+        <div class="input-group mb-3">
+          <span class="input-group-text">day</span>
+          <input type="number" class="form-control form-style" placeholder="09" aria-label="day" name="checkout_day"
+           value="{{ booking.check_out.day if booking else ''}}">
+          <span class="input-group-text">month</span>
+          <input type="number" class="form-control form-style" placeholder="10" aria-label="month" name="checkout_month"
+           value="{{ booking.check_out.month if booking else ''}}">
+          <span class="input-group-text">year</span>
+          <input type="number" class="form-control form-style" placeholder="2023" aria-label="year" name="checkout_year"
+           value="{{ booking.check_out.year if booking else ''}}">
+        </div>
+      </div>
+  </div>
+
+    <div class="row">
+    <div class="col text-center my-3">
+       <button type="submit" class="btn create-btn rounded-pill px-4">Submit</button>
+    </div>
+  </div>

@@ -27,13 +27,15 @@
         {% for client in clients %}
             <tr>
                 <td> {{ client.id }}</td>
-                <td>{{ client.name }} <a href="#"> <em>(edit) </em> </a> </td>
+                <td>{{ client.name }} <a href="{{ url_for('client.get_client', client_id=client.id) }} ">
+                    <em>(edit client info) </em> </a> </td>
                 <td> {{ client.surname }} </td>
                 <td> {{ client.sex }} </td>
                 <td> {{ client.age }} </td>
                 <td> {{ client.job }} </td>
                 <td> {{ client.telephone }} </td>
-                <td> {{ client.booking_id }} </td>
+                <td> {{ client.booking_id }} <a href= "{{ url_for('client.get_booking', booking_id=client.booking_id) }} ">
+                    <em>(edit booking info) </em> </a>  </td>
             </tr>
         {% endfor %}
     </tbody>
