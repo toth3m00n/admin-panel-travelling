@@ -12,6 +12,6 @@ $$
 LANGUAGE 'plpgsql';
 
 CREATE OR REPLACE TRIGGER set_booking_price
-    BEFORE INSERT ON booking
+    BEFORE INSERT OR UPDATE ON booking
     FOR EACH ROW
     EXECUTE FUNCTION count_bill_for_booking();

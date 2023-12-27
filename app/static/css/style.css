@@ -25,7 +25,7 @@ h2, h3, h4 {
     color: #003347;
 }
 
-li a {
+li a navtext-style {
   color: #22559c;
   font-weight: bold;
 }
@@ -50,6 +50,26 @@ li.list-group-item {
 
 .create-btn:hover {
     background-color: #647991;
+}
+
+.update-btn {
+    background-color: #00db6a;
+    font-weight: bold;
+    display: inline-block;
+}
+
+.update-btn:hover {
+    background-color: #00a851;
+}
+
+.delete-btn {
+    background-color: #ff3333;
+    font-weight: bold;
+    display: inline-block;
+}
+
+.delete-btn:hover {
+    background-color: #cc0029;
 }
 
 .form-style {

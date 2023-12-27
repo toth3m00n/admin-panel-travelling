@@ -7,8 +7,11 @@
       <div class="mb-3 col-4">
         <label class="form-label"> Hotel </label>
       <select class="form-select form-select-sm form-style" name="hotel" aria-label="Default select example">
+          {% if class_type %} <option selected > {{class_type.hotel_name}} </option> {% endif %}
           {% for hotel_name in hotels %}
-        <option value={{hotel_name[0]}} > {{ hotel_name[0] }} </option>
+          {% if hotel_name[0] != class_type.hotel_name %}
+            <option value="{{ hotel_name[0] }}" > {{ hotel_name[0] }} </option>
+          {% endif %}
           {% endfor %}
       </select>
       </div>
@@ -16,8 +19,11 @@
         <div class="mb-3 col-4">
         <label class="form-label"> Class </label>
       <select class="form-select form-select-sm form-style" aria-label="Default select example" name="class_name">
+          {% if class_type %} <option selected > {{class_type.name}} </option> {% endif %}
           {% for class_name in classes %}
-        <option value={{class_name[0]}} > {{ class_name[0] }} </option>
+            {% if class_name[0] != class_type.name %}
+              <option value="{{class_name[0]}}" > {{ class_name[0] }} </option>
+            {% endif%}
           {% endfor %}
       </select>
       </div>
@@ -63,8 +69,16 @@
       </div>
   </div>
 
+   {% if update_booking %}
+  <div class="row">
+    <div class="col text-center my-3">
+       <button type="submit" class="btn update-btn rounded-pill px-4"> Update </button>
+    </div>
+  </div>
+  {% else %}
     <div class="row">
     <div class="col text-center my-3">
        <button type="submit" class="btn create-btn rounded-pill px-4">Submit</button>
     </div>
   </div>
+ {% endif %}

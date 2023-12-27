@@ -17,7 +17,7 @@
   <fieldset>
   <legend>Select a gender</legend>
     <div class="form-check">
-      <input type="radio" class="form-check-input radio-style" name="gender" id="male" value="male">
+      <input type="radio" class="form-check-input radio-style" name="gender" id="male" value="male" checked>
       <label class="form-check-label" for="male">Male</label>
     </div>
     <div class="form-check">
@@ -51,8 +51,13 @@
 
 
  </div>
-      <div class="row">
+
+  {% if update_client %}
+  <div class="row">
     <div class="col text-center my-3">
-       <button type="submit" class="btn create-btn rounded-pill px-4">Submit</button>
+       <button type="submit" class="btn update-btn rounded-pill px-4"> Update </button>
+        <button formaction="{{ client.id }}/delete" type="submit" class="btn delete-btn rounded-pill px-4"
+                title="please notice that relative booking_id will be delete"> Delete </button>
     </div>
   </div>
+  {% endif %}

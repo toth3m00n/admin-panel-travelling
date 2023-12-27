@@ -20,7 +20,7 @@
     <tbody>
         {% for hotel in hotels %}
             <tr>
-                <td>{{ hotel.name }} <a href="#"> <em>(edit) </em> </a> </td>
+                <td>{{ hotel.name }} <a href="{{ url_for('hotel.get_hotel', hotel_name=hotel.name)}}"> <em>(edit hotel info) </em> </a> </td>
                 <td> {{ hotel.count_stars }} </td>
             </tr>
         {% endfor %}

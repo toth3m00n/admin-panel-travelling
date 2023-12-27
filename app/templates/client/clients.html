@@ -35,7 +35,7 @@
                 <td> {{ client.job }} </td>
                 <td> {{ client.telephone }} </td>
                 <td> {{ client.booking_id }} <a href= "{{ url_for('client.get_booking', booking_id=client.booking_id) }} ">
-                    <em>(edit booking info) </em> </a>  </td>
+                    <em>(booking info) </em> </a>  </td>
             </tr>
         {% endfor %}
     </tbody>

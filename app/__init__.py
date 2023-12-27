@@ -2,6 +2,7 @@ import os
 from flask import Flask
 from sqlalchemy import text
 
+from .utils import SlugConverter
 from .hotel.models import *
 from .client.models import *
 from .class_type.models import *
@@ -10,6 +11,7 @@ from .convenience.models import *
 
 def create_app():
     app = Flask(__name__)
+    app.url_map.converters['slug'] = SlugConverter
     app.config.from_object(os.environ.get('APP_SETTINGS'))
 
     db.init_app(app)
