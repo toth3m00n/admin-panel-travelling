@@ -5,9 +5,9 @@
 {% block content %}
 
 {% if hotel %}
-    <h2 class="text-center"> Add new hotel</h2>
-{% else %}
     <h2 class="text-center"> Hotel {{ hotel.name }}</h2>
+    {% else %}
+    <h2 class="text-center"> Add new hotel </h2>
 {% endif %}
 
 {% for error in errors %}

@@ -1,4 +1,4 @@
-from sqlalchemy import insert
+from sqlalchemy import insert, distinct
 
 from table.data_for_db import *
 
@@ -11,7 +11,6 @@ from manage import app
 
 
 def fil_database():
-
     # hotel
     for name in hotel_names:
         data_to_insert = {'name': name, 'count_stars': stars[randint(0, len(stars) - 1)]}
@@ -71,12 +70,15 @@ def fil_database():
 
         db.session.add(Client(**data_to_insert))
 
+    classes = db.session.query(Class).all()
+
     # class_type-convenience
-    for class_id in range(len(class_names)):
+    for class_id in classes:
+        id = class_id.id
         for convenience_name in convenience_names:
             amount = randint(0, 7)
             data_to_insert = {
-                'class_id': start_class_id + class_id,
+                'class_id': id,
                 'convenience_name': convenience_name,
                 'amount': amount
             }

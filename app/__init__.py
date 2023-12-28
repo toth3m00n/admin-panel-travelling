@@ -34,5 +34,8 @@ def create_app():
     from app.hotel.hotel import hotel_bp
     app.register_blueprint(hotel_bp, url_prefix='/hotel')
 
+    from app.convenience.convenience import convenience_bp
+    app.register_blueprint(convenience_bp, url_prefix='/convenience')
+
     return app
 

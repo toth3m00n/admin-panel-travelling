@@ -1,0 +1,32 @@
+{% extends './base.html' %}
+
+{% block title %} Conveniences {% endblock %}
+
+{% block content %}
+
+ <h2 class="text-center fs-1"> Conveniences </h2>
+
+<div class="container-flexible py-3 ps-1">
+    <a href="{{ url_for('convenience.create_convenience') }}"> <button type="button"
+            class="btn create-btn rounded-pill fw-550 px-4 btn-sm">Create new convenience</button></a>
+</div>
+
+<table>
+    <thead>
+        <tr>
+            <th>name</th>
+            <th>size</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for convenience in conveniences %}
+            <tr>
+                <td>{{ convenience.name }}
+                    <a href="{{url_for('convenience.get_convenience', convenience_name= convenience.name )}}">
+                        <em>(edit convenience info) </em> </a> </td>
+                <td> {{ convenience.size }} см </td>
+            </tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% endblock %}

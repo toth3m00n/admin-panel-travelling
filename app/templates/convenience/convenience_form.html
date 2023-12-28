@@ -1,0 +1,75 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+{% if convenience %}
+    <h2 class="text-center"> Convenience {{ convenience.name }}</h2>
+{% else %}
+    <h2 class="text-center"> Add new convenience </h2>
+{% endif %}
+
+{% for error in errors %}
+    <div class="alert alert-danger" role="alert">
+      {{ error }}
+    </div>
+{% endfor %}
+
+<div class="container my-2">
+
+    <form method="post">
+
+        <div class="container pb-3 border-4 border-style mb-2 col-8 transparent-style">
+            <label class="form-label fw-bolder fs-5"> Convenience info </label>
+          <div class="row">
+              <div class="mb-3 col-4">
+                <label for="convenience_name" class="form-label">Name</label>
+                <input type="text" class="form-control form-control-sm px-4 form-style"
+                       name="convenience_name" id="convenience_name" value="{{ convenience.name }}">
+              </div>
+
+                <div class="mb-3 col-4">
+                <label for="size" class="form-label">Size</label>
+                <input type="number" class="form-control form-control-sm px-4 form-style" name="size" id="size" value="{{ convenience.size   }}">
+              </div>
+          </div>
+        </div>
+
+        <div class="container pb-3 border-4 border-style mb-2 col-8 transparent-style">
+            <div class="row">
+              <label class="form-label fw-bolder fs-5"> Class-convenience info </label>
+               {% for hotel in hotels %}
+                      <label class="mt-3"> {{ hotel.name }} </label>
+                      {% for class in classes %}
+                            <div class="input-group my-2">
+                            <span class="input-group-text"> {{ class[0] }}  </span>
+                                {% set key=hotel.name + '_' + class[0] %}
+                            <input type="number" class="form-control form-style" name="{{ hotel.name }}_{{ class[0]}}"
+                                   value="{{ amounts[key]}}"
+                                   placeholder="enter amount (can be empty)">
+                            </div>
+                      {% endfor %}
+                {% endfor %}
+            </div>
+        </div>
+
+    {% if not convenience %}
+      <div class="row">
+        <div class="col text-center my-3">
+           <button type="submit" class="btn update-btn rounded-pill px-4"> Submit </button>
+        </div>
+      </div>
+    {% else %}
+    <div class="row">
+        <div class="col text-center my-3">
+           <button type="submit" class="btn update-btn rounded-pill px-4"> Update </button>
+            <button formaction="{{ convenience.name }}/delete" type="submit" class="btn delete-btn rounded-pill px-4"
+                title="please notice that relative booking_id will be delete"> Delete </button>
+        </div>
+    </div>
+    {% endif %}
+
+    </form>
+
+</div>
+
+{% endblock %}

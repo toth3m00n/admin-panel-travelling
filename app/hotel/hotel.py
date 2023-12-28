@@ -165,7 +165,6 @@ def get_hotel(hotel_name: str):
         try:
             for class_name in class_names:
                 name = class_name[0]
-                print(name, form_values[name])
                 db.session.query(Class).filter(and_(
                     Class.hotel_name == form_values["hotel_name"], Class.name == name
                 )).update({"price_per_night": form_values[name]})
