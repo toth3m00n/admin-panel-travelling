@@ -2,7 +2,7 @@
 
 ## Schema database 
 
-![alt text](schema.png)
+![alt schema](schema.png)
 
 ---
 
@@ -16,8 +16,27 @@
 ![Bootstrap](https://img.shields.io/badge/bootstrap-%238511FA.svg?style=for-the-badge&logo=bootstrap&logoColor=white)
 
 ---
+### **Что проект из себя представляет?**
 
-## Как развернуть проект локально
+#### Это клиентское приложение, которое предоставляет следующие возможности:
+  
+- Отображение данных из всех таблиц
+  
+- Диалоги добавления/редактирования/удаления строк таблицы
+  
+- Валидация данных с выводом понятных пользователю сообщений на экран
+
+---
+### Примеры:
+
+![ex one](examples/index_page.png)
+![ex two](examples/clients.png)
+![ex three](examples/add_client.png)
+![ex four](examples/update_client.png)
+
+---
+
+### Как развернуть проект локально
 
 Склонировать репозиторий:
 ```
