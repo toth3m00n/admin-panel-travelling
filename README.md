@@ -44,7 +44,7 @@ git clone https://github.com/toth3m00n/admin-panel-travelling
 ```
 Установить и активировать виртуальное окружение:
 ```
-cd computer_club
+cd app
 python -m venv venv
 source venv/bin/activate
 (source venv/Scripts/activate - на Windows)
